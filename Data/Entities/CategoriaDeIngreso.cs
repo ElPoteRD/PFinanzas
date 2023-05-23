@@ -1,7 +1,12 @@
-﻿namespace PFinanzas.Data.Entities
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
+
+namespace PFinanzas.Data.Entities
 {
     public class CategoriaDeIngreso
     {
+        [Key]
         public int Id { get; set; }
-        public string Categoria { get; set; }
+        public string Categoria { get; set; } = null!;
     }
+}

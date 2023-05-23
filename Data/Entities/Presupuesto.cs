@@ -1,7 +1,10 @@
-﻿namespace PFinanzas.Data.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PFinanzas.Data.Entities
 {
     public class Presupuesto
     {
+        [Key]
         public int Id { get; set; }
         public int UsuarioId { get; set; }
         public int CategoriaId { get; set; }
@@ -18,3 +21,4 @@
             Fecha = fecha;
         }
     }
+}
