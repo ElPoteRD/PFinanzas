@@ -12,7 +12,7 @@ namespace PFinanzas.Data.Context
         DbSet<Gasto> gasto { get; set; }
         DbSet<Ingreso> ingreso { get; set; }
         DbSet<Presupuesto> presupuesto { get; set; }
-        DbSet<Usuario> usuario { get; set; }
+        DbSet<UsuarioRequest> usuario { get; set; }
 
        public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }

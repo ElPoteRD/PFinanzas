@@ -12,15 +12,49 @@ namespace PFinanzas.Data.Entities
         public string Descripción { get; set; } = null!;
         public DateTime Fecha { get; set; }
 
-        public Ingreso() { }
-
-        public Ingreso(int usuarioId, int categoriaId, decimal monto, string descripcion, DateTime fecha)
+        public static Ingreso Crear(IngresoRequest Ingreso) => new Ingreso()
         {
-            UsuarioId = usuarioId;
-            CategoriaId = categoriaId;
-            Monto = monto;
-            Descripción = descripcion;
-            Fecha = fecha;
+            Id = Ingreso.Id,
+            UsuarioId = Ingreso.UsuarioId,
+            CategoriaId = Ingreso.CategoriaId,
+            Monto = Ingreso.Monto,
+            Descripción = Ingreso.Descripción,
+            Fecha = Ingreso.Fecha,
+        };
+
+        public bool Modificar(IngresoRequest Ingreso)
+        {
+            var cambio = false;
+            if (Monto != Ingreso.Monto)
+            {
+                Monto = Ingreso.Monto;
+                cambio = true;
+            }
+
+            if (Descripción != Ingreso.Descripción)
+            {
+                Descripción = Ingreso.Descripción;
+                cambio = true;
+            }
+
+            if (Fecha != Ingreso.Fecha)
+            {
+                Fecha = Ingreso.Fecha;
+                cambio = true;
+            }
+
+            return cambio;
         }
-    }
+
+        public IngresoResponse ToResponse() => new IngresoResponse()
+        {
+            Id=Id,
+            UsuarioId=UsuarioId,
+            CategoriaId=CategoriaId,
+            Monto = Monto,
+            Descripción = Descripción.ToString(),
+            Fecha = Fecha,
+        };
+
+    }   
 }

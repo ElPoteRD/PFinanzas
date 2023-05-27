@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PFinanzas.Data.Entities
 {
@@ -10,5 +11,47 @@ namespace PFinanzas.Data.Entities
         public string Apellido { get; set; } = null!;
         public string Correo { get; set; } = null!;
         public string Contraseña { get; set; } = null!;
+
+        public static Usuario Crear(UsuarioRequest Usuario) => new Usuario()
+        {
+            Nombre = Usuario.Nombre,
+            Apellido = Usuario.Apellido,
+            Correo = Usuario.Correo,
+            Contraseña = Usuario.Contraseña,
+        };
+
+        public bool Modificar(UsuarioRequest Usuario)
+        {
+            var cambio = false;
+            if (Nombre != Usuario.Nombre)
+            {
+                Nombre = Usuario.Nombre;
+                cambio = true;
+            }
+            if (Apellido != Usuario.Apellido)
+            {
+                Apellido = Usuario.Apellido;
+                cambio = true;
+            }
+            if (Correo != Usuario.Correo)
+            {
+                Correo = Usuario.Correo;
+                cambio = true;
+            }
+            if (Contraseña != Usuario.Contraseña)
+            {
+                Contraseña = Usuario.Contraseña;
+                cambio = true;
+            }
+            return cambio;
+        }
+
+        public UsuarioResponse ToResponse() => new UsuarioResponse()
+        {
+            Nombre = Nombre,
+            Apellido = Apellido,
+            Correo = Correo
+        };
     }
+
 }

@@ -18,7 +18,7 @@ namespace PFinanzas.Data.Context
         public DbSet<Gasto> gasto { get; set; }
         public DbSet<Ingreso> ingreso { get; set; }
         public DbSet<Presupuesto> presupuesto { get; set; }
-        public DbSet<Usuario> usuario { get; set; }
+        public DbSet<UsuarioRequest> usuario { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

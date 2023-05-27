@@ -11,14 +11,14 @@ namespace PFinanzas.Data.Entities
         public decimal Monto { get; set; }
         public DateTime Fecha { get; set; }
 
-        public Presupuesto() { }
-
-        public Presupuesto(int usuarioId, int categoriaId, decimal monto, DateTime fecha)
+        public static Presupuesto Crear(PresupuestoRequest Presupuesto) => new Presupuesto()
         {
-            UsuarioId = usuarioId;
-            CategoriaId = categoriaId;
-            Monto = monto;
-            Fecha = fecha;
-        }
+            Id = Presupuesto.Id,
+            UsuarioId = Presupuesto.UsuarioId,
+            CategoriaId = Presupuesto.CategoriaId,
+            Monto = Presupuesto.Monto,
+            Fecha = Presupuesto.Fecha,
+        };
+
     }
 }
