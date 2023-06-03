@@ -11,14 +11,14 @@ namespace PFinanzas.Data.Context
         {
             this.config = config;
         }
-        public DbSet<Ahorro> ahorro { get; set; }
-        public DbSet<CategoriaDeGasto> categoriaDeGasto { get; set; }
-        public DbSet<CategoriaDeIngreso> categoriaDeIngreso { get; set; }
-        public DbSet<CategoriaDePresupuesto> categoriaDePresupuesto { get; set; }
-        public DbSet<Gasto> gasto { get; set; }
-        public DbSet<Ingreso> ingreso { get; set; }
-        public DbSet<Presupuesto> presupuesto { get; set; }
-        public DbSet<UsuarioRequest> usuario { get; set; }
+        public DbSet<Ahorro> Ahorros { get; set; }
+        public DbSet<CategoriaDeGasto> CategoriaDeGastos { get; set; }
+        public DbSet<CategoriaDeIngreso> CategoriaDeIngresos { get; set; }
+        public DbSet<CategoriaDePresupuesto> CategoriaDePresupuestos { get; set; }
+        public DbSet<Gasto> Gastos { get; set; }
+        public DbSet<Ingreso> Ingresos { get; set; }
+        public DbSet<Presupuesto> Presupuestos { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

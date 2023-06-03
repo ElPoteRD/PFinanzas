@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PFinanzas.Data.Entities
 {
@@ -8,6 +9,8 @@ namespace PFinanzas.Data.Entities
         public int Id { get; set; }
         public int UsuarioId { get; set; }
         public int CategoriaId { get; set; }
+        [ForeignKey(nameof(CategoriaId))]
+        public virtual CategoriaDeIngreso? Categoria { get; set; }
         public decimal Monto { get; set; }
         public string Descripción { get; set; } = null!;
         public DateTime Fecha { get; set; }
@@ -51,6 +54,7 @@ namespace PFinanzas.Data.Entities
             Id=Id,
             UsuarioId=UsuarioId,
             CategoriaId=CategoriaId,
+            Categoria= Categoria.ToResponse(),
             Monto = Monto,
             Descripción = Descripción.ToString(),
             Fecha = Fecha,

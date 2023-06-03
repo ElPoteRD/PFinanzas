@@ -10,14 +10,5 @@ namespace PFinanzas.Data.Entities
         public decimal Monto { get; set; }
         public DateTime Fecha { get; set; }
 
-        public PresupuestoRequest() { }
-
-        public PresupuestoRequest(int usuarioId, int categoriaId, decimal monto, DateTime fecha)
-        {
-            UsuarioId = usuarioId;
-            CategoriaId = categoriaId;
-            Monto = monto;
-            Fecha = fecha;
-        }
     }
 }

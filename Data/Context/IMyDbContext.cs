@@ -5,14 +5,14 @@ namespace PFinanzas.Data.Context
 {
     public interface IMyDbContext
     {
-        DbSet<Ahorro> ahorro { get; set; }
-        DbSet<CategoriaDeGasto> categoriaDeGasto { get; set; }
-        DbSet<CategoriaDeIngreso> categoriaDeIngreso { get; set; }
-        DbSet<CategoriaDePresupuesto> categoriaDePresupuesto { get; set; }
-        DbSet<Gasto> gasto { get; set; }
-        DbSet<Ingreso> ingreso { get; set; }
-        DbSet<Presupuesto> presupuesto { get; set; }
-        DbSet<UsuarioRequest> usuario { get; set; }
+        DbSet<Ahorro> Ahorros { get; set; }
+        DbSet<CategoriaDeGasto> CategoriaDeGastos { get; set; }
+        DbSet<CategoriaDeIngreso> CategoriaDeIngresos { get; set; }
+        DbSet<CategoriaDePresupuesto> CategoriaDePresupuestos { get; set; }
+        DbSet<Gasto> Gastos { get; set; }
+        DbSet<Ingreso> Ingresos { get; set; }
+        DbSet<Presupuesto> Presupuestos { get; set; }
+        DbSet<Usuario> Usuarios { get; set; }
 
        public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }

@@ -14,6 +14,7 @@ namespace PFinanzas.Data.Entities
 
         public static Usuario Crear(UsuarioRequest Usuario) => new Usuario()
         {
+            Id = Usuario.Id,
             Nombre = Usuario.Nombre,
             Apellido = Usuario.Apellido,
             Correo = Usuario.Correo,

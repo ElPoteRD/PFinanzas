@@ -12,15 +12,5 @@ namespace PFinanzas.Data.Entities
         public string Descripción { get; set; } = null!;
         public DateTime Fecha { get; set; }
 
-        public IngresoRequest() { }
-
-        public IngresoRequest(int usuarioId, int categoriaId, decimal monto, string descripcion, DateTime fecha)
-        {
-            UsuarioId = usuarioId;
-            CategoriaId = categoriaId;
-            Monto = monto;
-            Descripción = descripcion;
-            Fecha = fecha;
-        }
     }
 }
