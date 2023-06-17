@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
 using PFinanzas.Data.Context;
 using PFinanzas.Data.Entities;
 
@@ -76,8 +77,9 @@ namespace PFinanzas.Data.Services
         {
             try
             {
-                var Usuario = await dbContext.Usuarios.Where(c => (c.Nombre + " " + c.Apellido + " " + c.Correo).ToLower().Contains(filtro.ToLower()).Select(c => c.ToResponse()).ToListAsync();
-                return new List<Result<UsuarioResponse>>
+                var Usuario = await dbContext.Usuarios.Where(c => (c.Nombre + " " + c.Apellido + " " + c.Correo).ToLower().Contains(filtro.ToLower())).Select(c => c.ToResponse()).ToListAsync();
+
+                return new Result<List<UsuarioResponse>>
                 {
                     Message = "Ok",
                     Success = true,

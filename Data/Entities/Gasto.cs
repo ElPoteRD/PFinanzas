@@ -52,14 +52,14 @@ namespace PFinanzas.Data.Entities
             return cambio;
         }
 
-        public GastoResponse ToResponse(GastoRequest Gasto) => new GastoResponse()
+        public GastoResponse ToResponse() => new()
         {
-            Id = Gasto.Id,
-            UsuarioId= Gasto.UsuarioId,
-            CategoriaId = Gasto.CategoriaId,
+            Id = Id,
+            UsuarioId= UsuarioId,
+            CategoriaId = CategoriaId,
             Monto = Monto,
             Descripción=Descripción,
-            Fecha = Fecha,
+            Fecha = Fecha
         };
     }
 }

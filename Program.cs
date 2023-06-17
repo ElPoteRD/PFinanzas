@@ -12,6 +12,13 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddDbContext<MyDbContext>();
 builder.Services.AddScoped<IMyDbContext, MyDbContext>();
 builder.Services.AddScoped<IUsuarioServices, UsuarioServices>();
+builder.Services.AddScoped<IIngresoServices, IngresoServices>();
+builder.Services.AddScoped<IGastoServices, GastoServices>();
+builder.Services.AddScoped<IPresupuestoServices, PresupuestoServices>();
+builder.Services.AddScoped<ICategoriaDeIngresoServices, CategoriaDeIngresoServices>();
+builder.Services.AddScoped<ICategoriaDeGastoServices, CategoriaDeGastoServices>();
+builder.Services.AddScoped<ICategoriaDePresupuestoServices, CategoriaDePresupuestoServices>();
+
 
 var app = builder.Build();
 

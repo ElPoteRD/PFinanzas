@@ -9,6 +9,7 @@ namespace PFinanzas.Data.Entities
         public int Id { get; set; }
         public int UsuarioId { get; set; }
         public int CategoriaId { get; set; }
+
         [ForeignKey(nameof(CategoriaId))]
         public virtual CategoriaDeIngreso? Categoria { get; set; }
         public decimal Monto { get; set; }
@@ -54,7 +55,7 @@ namespace PFinanzas.Data.Entities
             Id=Id,
             UsuarioId=UsuarioId,
             CategoriaId=CategoriaId,
-            Categoria= Categoria.ToResponse(),
+            Categoria= Categoria?.ToResponse(),
             Monto = Monto,
             Descripción = Descripción.ToString(),
             Fecha = Fecha,

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PFinanzas.Data.Entities
@@ -9,6 +10,9 @@ namespace PFinanzas.Data.Entities
         public int Id { get; set; }
         public int UsuarioId { get; set; }
         public int CategoriaId { get; set; }
+
+        [ForeignKey(nameof(CategoriaId))]
+        public virtual CategoriaDePresupuesto? Categoria { get; set; }
         public decimal Monto { get; set; }
         public DateTime Fecha { get; set; }
 
@@ -52,6 +56,8 @@ namespace PFinanzas.Data.Entities
 
 
         }
+
+
         public PresupuestoResponse ToResponse() => new PresupuestoResponse()
         {
             Id = Id,
