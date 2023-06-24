@@ -1,0 +1,100 @@
+﻿@page "/Usuarios"
+<div class="container-sm d-flex justify-content-evenly align-items-lg-start">
+    
+    <div class="m-4">
+        <h3 style="text-align:center">Usuarios</h3>
+            @foreach (var Usuario in Usuarios)
+            {
+            <div class="card mb-2" style="width:24rem">
+                <div class="card-body">
+                     <img src="icons/user.png" />
+                     <label class="card-title">@Usuario.Nombre @Usuario.Apellido</label>
+                </div>
+                <div>
+                 <button class="btn btn-danger w-100">Eliminar</button>
+                 </div>
+             </div>
+             }
+    </div>
+
+    <!--Formulario Crear Usuario-->
+    <div class="m-4 d-flex">
+
+         <div class="container-sm p-4" style="width:25rem; border-color:lightgray; border-style:solid; border-radius:5%">
+                <h3 class="text-lg-center mb-4">Crear Usuario</h3>
+                <EditForm Model="request" OnValidSubmit="enviar">
+                   <div class="input-group">
+                        <div class="mb-3 input-group">
+                            <label class="input-group-text">Nombre</label>
+                            <InputText class="form-control" @bind-Value="@request.Nombre"></InputText>
+                        </div>
+
+                        <div class="mb-3 input-group">
+                            <label class="input-group-text">Apellido</label>
+                            <InputText class="form-control" @bind-Value="@request.Apellido"></InputText>
+                        </div>
+
+                        <div class="mb-3 input-group">
+                            <label class="input-group-text">Correo</label>
+                            <InputText class="form-control" @bind-Value="@request.Correo"></InputText>
+                        </div>
+
+                        <div class="mb-3 input-group">
+                            <label class="input-group-text">Contraseña</label>
+                            <InputText class="form-control" @bind-Value="@request.Contraseña"></InputText>
+                        </div>
+        
+                        <div class="btn-group w-100">
+                             <button type="submit" class="btn btn-success">Guardar</button>
+                        </div>
+                    </div>
+            </EditForm>
+    </div>
+    </div>
+</div>
+
+@code {
+    public bool ShowForm { get; set; } = false;
+    public UsuarioRequest request = new UsuarioRequest();
+    public List<UsuarioResponse> Usuarios { get; set; } = new List<UsuarioResponse>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CargarUsuarios();
+    }
+
+    public async Task enviar()
+    {
+        if (request.Id == 0)
+        {
+            var r= await UsuarioService.Crear(request);
+            StateHasChanged();
+            await CargarUsuarios();
+
+        }
+        else
+        {
+            var r = await UsuarioService.Modificar(request);
+            StateHasChanged();
+        }
+    }
+
+    async Task CargarUsuarios()
+    {
+        var resultado = await UsuarioService.Consultar();
+        if (resultado.Success)
+        {
+            Usuarios = resultado.Data!;
+        }
+    }
+
+    //public async Task Eliminar(UsuarioResponse usuario)
+    //{
+
+    //    var resultado = await UsuarioServices.Eliminar();
+    //    if (resultado.Success)
+    //    {
+    //        StateHasChanged();
+    //    }
+    //}
+}

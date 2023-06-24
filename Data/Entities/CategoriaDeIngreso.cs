@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
+using PFinanzas.Data.Request;
+using PFinanzas.Data.Response;
 
 namespace PFinanzas.Data.Entities
 {

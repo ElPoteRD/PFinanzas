@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using PFinanzas.Data.Entities;
 
-namespace PFinanzas.Data.Entities
+namespace PFinanzas.Data.Request
 {
     public class AhorroRequest
     {

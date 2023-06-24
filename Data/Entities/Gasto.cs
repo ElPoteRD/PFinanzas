@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using PFinanzas.Data.Request;
+using PFinanzas.Data.Response;
 namespace PFinanzas.Data.Entities
 {
     public class Gasto

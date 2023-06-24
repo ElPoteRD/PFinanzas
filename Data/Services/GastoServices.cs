@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using PFinanzas.Data.Context;
 using PFinanzas.Data.Entities;
+using PFinanzas.Data.Response;
+using PFinanzas.Data.Request;
 
 namespace PFinanzas.Data.Services
 {

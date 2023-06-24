@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 
-namespace PFinanzas.Data.Entities
+namespace PFinanzas.Data.Request
 {
     public class CategoriaDeIngresoRequest
     {

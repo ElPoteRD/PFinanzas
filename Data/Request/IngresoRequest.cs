@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PFinanzas.Data.Entities
+namespace PFinanzas.Data.Request
 {
     public class IngresoRequest
     {

@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using PFinanzas.Data.Request;
+using PFinanzas.Data.Response;
 
 namespace PFinanzas.Data.Entities
 {

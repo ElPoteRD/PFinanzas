@@ -1,5 +1,6 @@
 ﻿using PFinanzas.Data.Entities;
-
+using PFinanzas.Data.Response;
+using PFinanzas.Data.Request;
 namespace PFinanzas.Data.Services
 {
     public interface IIngresoServices

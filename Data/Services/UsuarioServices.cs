@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using PFinanzas.Data.Context;
 using PFinanzas.Data.Entities;
+using PFinanzas.Data.Request;
+using PFinanzas.Data.Response;
 
 namespace PFinanzas.Data.Services
 {
@@ -56,7 +58,7 @@ namespace PFinanzas.Data.Services
         {
             try
             {
-                var Usuario = await dbContext.Usuarios.FirstOrDefaultAsync(c => c.Id == request.Id);
+                var Usuario = await dbContext.Usuarios.FirstOrDefaultAsync(u => u.Id == request.Id);
                 if (Usuario == null)
                     return new Result { Message = "Usuario no registrado", Success = false };
 
@@ -73,11 +75,11 @@ namespace PFinanzas.Data.Services
 
         }
 
-        public async Task<Result<List<UsuarioResponse>>> Consultar(string filtro)
+        public async Task<Result<List<UsuarioResponse>>> Consultar()
         {
             try
             {
-                var Usuario = await dbContext.Usuarios.Where(c => (c.Nombre + " " + c.Apellido + " " + c.Correo).ToLower().Contains(filtro.ToLower())).Select(c => c.ToResponse()).ToListAsync();
+                var Usuario = await dbContext.Usuarios.Select(u => u.ToResponse()).ToListAsync();
 
                 return new Result<List<UsuarioResponse>>
                 {

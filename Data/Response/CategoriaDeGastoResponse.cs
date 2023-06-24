@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
-namespace PFinanzas.Data.Entities
+using PFinanzas.Data.Request;
+namespace PFinanzas.Data.Response
 {
     public class CategoriaDeGastoResponse
     {

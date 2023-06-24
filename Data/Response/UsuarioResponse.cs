@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PFinanzas.Data.Entities
+namespace PFinanzas.Data.Response
 {
     public class UsuarioResponse
     {
