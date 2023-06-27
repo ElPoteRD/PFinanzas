@@ -1,18 +1,19 @@
 ﻿@page "/Usuarios"
 <div class="container-sm d-flex justify-content-evenly align-items-lg-start">
     
+    <!--Lista de Usuarios-->
     <div class="m-4">
         <h3 style="text-align:center">Usuarios</h3>
-            @foreach (var Usuario in Usuarios)
+            @foreach (var usuario in Usuarios)
             {
             <div class="card mb-2" style="width:24rem">
                 <div class="card-body">
                      <img src="icons/user.png" />
-                     <label class="card-title">@Usuario.Nombre @Usuario.Apellido</label>
+                     <label class="card-title">@usuario.Nombre @usuario.Apellido</label>
                 </div>
-                <div>
-                 <button class="btn btn-danger w-100">Eliminar</button>
-                 </div>
+                @*<div>
+                    <button @onclick="()=>Eliminar(usuario)" class="btn btn-danger w-100">Eliminar</button>
+                 </div>*@
              </div>
              }
     </div>
@@ -41,7 +42,7 @@
 
                         <div class="mb-3 input-group">
                             <label class="input-group-text">Contraseña</label>
-                            <InputText class="form-control" @bind-Value="@request.Contraseña"></InputText>
+                            <input type="password" class="form-control" value="@request.Contraseña">
                         </div>
         
                         <div class="btn-group w-100">
@@ -54,8 +55,8 @@
 </div>
 
 @code {
-    public bool ShowForm { get; set; } = false;
-    public UsuarioRequest request = new UsuarioRequest();
+    
+    public UsuarioRequest request { get; set; } = new UsuarioRequest();
     public List<UsuarioResponse> Usuarios { get; set; } = new List<UsuarioResponse>();
 
     protected override async Task OnInitializedAsync()
@@ -67,15 +68,9 @@
     {
         if (request.Id == 0)
         {
-            var r= await UsuarioService.Crear(request);
+            var r = await UsuarioService.Crear(request);
             StateHasChanged();
             await CargarUsuarios();
-
-        }
-        else
-        {
-            var r = await UsuarioService.Modificar(request);
-            StateHasChanged();
         }
     }
 
@@ -88,13 +83,14 @@
         }
     }
 
-    //public async Task Eliminar(UsuarioResponse usuario)
-    //{
+    public async Task Eliminar(UsuarioResponse usuario)
+    {
 
-    //    var resultado = await UsuarioServices.Eliminar();
-    //    if (resultado.Success)
-    //    {
-    //        StateHasChanged();
-    //    }
-    //}
+        var r = await UsuarioService.Eliminar(usuario.ToRequest());
+        if (r.Success)
+        {
+            await CargarUsuarios();
+            StateHasChanged();
+        }
+    }
 }

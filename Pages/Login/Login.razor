@@ -1,0 +1,39 @@
+﻿@page "/loginForm"
+    
+    <div class="m-lg-5 d-flex">
+        <div class="container-sm p-4" style="width:25rem; border-color:lightgray; border-style:solid; border-radius:5%">
+            <h3 class="text-lg-center mb-4">Inicio de Sesion</h3>
+            <EditForm Model="request" OnValidSubmit="enviar">
+                <div class="input-group">
+                    
+                    <div class="mb-3 input-group">
+                        <label class="input-group-text">Correo</label>
+                        <InputText class="form-control" @bind-Value="request.Correo"></InputText>
+                    </div>
+
+                    <div class="mb-3 input-group">
+                        <label class="input-group-text">Contraseña</label>
+                        <input type="password" class="form-control" value="@request.Contraseña">
+                    </div>
+                    
+                        <a class="mb-3" style="text-decoration:none" href="/Usuarios">¿No tienes Usuario?</a>
+                    
+                    <div class="btn-group w-100">
+                        <button type="submit" class="btn btn-success">Iniciar</button>
+                    </div>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+@code {
+    public UsuarioRequest request { get; set; } = new UsuarioRequest();
+
+    public async Task enviar()
+    {
+        if (request.Id == 0)
+        {
+
+            StateHasChanged();
+        }
+    }
+}

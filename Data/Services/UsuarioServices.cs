@@ -58,11 +58,11 @@ namespace PFinanzas.Data.Services
         {
             try
             {
-                var Usuario = await dbContext.Usuarios.FirstOrDefaultAsync(u => u.Id == request.Id);
-                if (Usuario == null)
+                var usuario = await dbContext.Usuarios.FirstOrDefaultAsync(u => u.Id == request.Id);
+                if (usuario == null)
                     return new Result { Message = "Usuario no registrado", Success = false };
 
-                dbContext.Usuarios.Remove(Usuario);
+                dbContext.Usuarios.Remove(usuario);
                 await dbContext.SaveChangesAsync();
                 return new Result { Message = "OK", Success = true };
 

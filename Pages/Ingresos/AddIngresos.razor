@@ -1,0 +1,101 @@
+﻿@page "/Ingresos"
+<h3>Ingresos</h3>
+
+<div class="container-sm d-flex justify-content-evenly align-items-lg-start">
+    <!--Tabla de Ingresos-->
+    <div class="m-4 d-flex row" style="width:25rem">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Monto</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var i in Ingresos)
+                {
+                    <tr>
+                        <th scope="row">@i.Monto</th>
+                        <td>@i.Categoria</td>
+                        <td>@i.Descripción</td>
+                        <td>@i.Fecha</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!--Formulario Crear Ingreso-->
+    <div class="m-4 d-flex">
+
+        <div class="container-sm p-4" style="width:25rem; border-color:lightgray; border-style:solid; border-radius:5%">
+            <h3 class="text-lg-center mb-4">Agregar Ingreso</h3>
+
+            <EditForm Model="request" OnValidSubmit="enviar">
+                <div class="input-group">
+                    <div class="mb-3 input-group">
+                        <label class="input-group-text">Monto</label>
+                        <input type="text" class="form-control" value="@request.Monto">
+                    </div>
+                    <div class="mb-3 input-group">
+                        <label class="input-group-text">Categoria</label>
+                        <select class="form-control" @bind="Ingresorequest.Categoria">
+                            <option disabled>Selecciona una Categoria</option>
+                            @foreach (var categoria in Categorias)
+                            {
+                                <option value="@categoria.Id">
+                                    @categoria.Categoria
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3 input-group">
+                        <label class="input-group-text">Descripcion</label>
+                        <InputText class="form-control" @bind-Value="@request.Descripción"></InputText>
+                    </div>
+
+                    <div class="mb-3 input-group">
+                        <label class="input-group-text">Fecha</label>
+                        <InputDate class="form-control" @bind-Value="@request.Fecha"></InputDate>
+                    </div>
+
+                    <div class="btn-group w-100">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    public IngresoRequest request { get; set; } = new IngresoRequest();
+    public CategoriaDeIngresoRequest Ingresorequest { get; set; } = new CategoriaDeIngresoRequest();
+    public List<CategoriaDeIngresoResponse> Categorias { get; set; } = new List<CategoriaDeIngresoResponse>();
+    public List<IngresoResponse> Ingresos { get; set; } = new List<IngresoResponse>();
+
+    public async Task enviar()
+    {
+        if (request.Id == 0)
+        {
+            var r = await IngresoService.Crear(request);
+            StateHasChanged();
+        }
+    }
+
+    async Task CargarCategorias()
+    {
+        var r = await CategoriaDeIngresoServices.Consultar();
+        if (r.Success)
+        {
+            Categorias = r.Data!;
+        }
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        await CargarCategorias();
+    }
+}

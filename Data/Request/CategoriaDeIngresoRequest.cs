@@ -7,5 +7,8 @@ namespace PFinanzas.Data.Request
     {
         public int Id { get; set; }
         public string Categoria { get; set; } = null!;
+
+        
+        
     }
 }

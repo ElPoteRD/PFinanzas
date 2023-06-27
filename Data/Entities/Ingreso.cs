@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using PFinanzas.Data.Context;
 using PFinanzas.Data.Request;
 using PFinanzas.Data.Response;
 

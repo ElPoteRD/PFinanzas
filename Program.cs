@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
 using PFinanzas.Data;
 using PFinanzas.Data.Context;
 using PFinanzas.Data.Services;
@@ -35,5 +36,12 @@ app.UseRouting();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+
+using (var serviceScope = app.Services.GetService<IServiceScopeFactory>()!.CreateScope())
+{
+    var dbContext = serviceScope.ServiceProvider.GetRequiredService<MyDbContext>();
+    dbContext.Database.Migrate();
+    await PFinanzasDbContextSeeder.Inicializar(dbContext);
+}
 
 app.Run();

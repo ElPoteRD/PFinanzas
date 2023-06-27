@@ -1,7 +1,7 @@
 ﻿<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">PFinanzas</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+        <a class="navbar-brand" href="/loginForm">Login</a>
+        <button title="Navigation menu" class="navbar-toggler">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
@@ -9,18 +9,14 @@
 
 <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
     <nav class="flex-column">
+        
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/Usuarios">
-                <span class="oi oi-home" aria-hidden="true"></span> Usuarios
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/ingresos">
+            <NavLink class="nav-link" href="/Ingresos">
                 <span class="oi oi-plus" aria-hidden="true"></span> Ingresos
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
+            <NavLink class="nav-link" href="/Gastos">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Gastos
             </NavLink>
         </div>
@@ -36,4 +32,6 @@
     {
         collapseNavMenu = !collapseNavMenu;
     }
+
+    
 }

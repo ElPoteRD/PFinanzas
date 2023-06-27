@@ -20,7 +20,7 @@ namespace PFinanzas.Data.Services
         {
             try
             {
-                var ingreso = Entities.Ingreso.Crear(request);
+                var ingreso = Ingreso.Crear(request);
                 dbContext.Ingresos.Add(ingreso);
                 await dbContext.SaveChangesAsync();
                 return new Result { Message = "OK", Success = true };
@@ -79,7 +79,7 @@ namespace PFinanzas.Data.Services
         {
             try
             {
-                var ingreso = await dbContext.Ingresos.Where(c => (c.Fecha + " " + c.Descripción + " " + c.Monto + " " + c.CategoriaId).ToLower().Contains(filtro.ToLower())).Select(c => c.ToResponse()).ToListAsync();
+                var ingreso = await dbContext.Ingresos.Select(c => c.ToResponse()).ToListAsync();
 
                 return new Result<List<IngresoResponse>>
                 {

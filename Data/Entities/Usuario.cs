@@ -16,7 +16,7 @@ namespace PFinanzas.Data.Entities
 
         public static Usuario Crear(UsuarioRequest Usuario) => new Usuario()
         {
-            Id = Usuario.Id,
+            Id= Usuario.Id,
             Nombre = Usuario.Nombre,
             Apellido = Usuario.Apellido,
             Correo = Usuario.Correo,
@@ -51,6 +51,7 @@ namespace PFinanzas.Data.Entities
 
         public UsuarioResponse ToResponse() => new UsuarioResponse()
         {
+            Id=Id,
             Nombre = Nombre,
             Apellido = Apellido,
             Correo = Correo
