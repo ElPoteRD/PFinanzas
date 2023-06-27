@@ -11,7 +11,7 @@ namespace PFinanzas.Data.Entities
 
         public CategoriaDePresupuesto() { 
         
-            Presupuestos= new List<Presupuesto>();
+            Presupuestos= new HashSet<Presupuesto>();
         }
 
         public ICollection<Presupuesto> Presupuestos { get; set; }

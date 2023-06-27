@@ -16,7 +16,7 @@ namespace PFinanzas.Data.Entities
         [ForeignKey(nameof(CategoriaId))]
         public virtual CategoriaDeIngreso? Categoria { get; set; }
         public decimal Monto { get; set; }
-        public string Descripción { get; set; } = null!;
+        public string Descripcion { get; set; } = null!;
         public DateTime Fecha { get; set; }
 
         public static Ingreso Crear(IngresoRequest Ingreso) => new Ingreso()
@@ -25,7 +25,7 @@ namespace PFinanzas.Data.Entities
             UsuarioId = Ingreso.UsuarioId,
             CategoriaId = Ingreso.CategoriaId,
             Monto = Ingreso.Monto,
-            Descripción = Ingreso.Descripción,
+            Descripcion = Ingreso.Descripcion,
             Fecha = Ingreso.Fecha,
         };
 
@@ -38,9 +38,9 @@ namespace PFinanzas.Data.Entities
                 cambio = true;
             }
 
-            if (Descripción != Ingreso.Descripción)
+            if (Descripcion != Ingreso.Descripcion)
             {
-                Descripción = Ingreso.Descripción;
+                Descripcion = Ingreso.Descripcion;
                 cambio = true;
             }
 
@@ -60,7 +60,7 @@ namespace PFinanzas.Data.Entities
             CategoriaId=CategoriaId,
             Categoria= Categoria?.ToResponse(),
             Monto = Monto,
-            Descripción = Descripción.ToString(),
+            Descripción = Descripcion.ToString(),
             Fecha = Fecha,
         };
 

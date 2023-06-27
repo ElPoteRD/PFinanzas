@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PFinanzas.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Iniciacion : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -110,7 +110,7 @@ namespace PFinanzas.Migrations
                     UsuarioId = table.Column<int>(type: "int", nullable: false),
                     CategoriaId = table.Column<int>(type: "int", nullable: false),
                     Monto = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Descripción = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -133,17 +133,17 @@ namespace PFinanzas.Migrations
                     UsuarioId = table.Column<int>(type: "int", nullable: false),
                     CategoriaId = table.Column<int>(type: "int", nullable: false),
                     Monto = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CategoriaDePresupuestoId = table.Column<int>(type: "int", nullable: true)
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Presupuestos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Presupuestos_CategoriaDePresupuestos_CategoriaDePresupuestoId",
-                        column: x => x.CategoriaDePresupuestoId,
+                        name: "FK_Presupuestos_CategoriaDePresupuestos_CategoriaId",
+                        column: x => x.CategoriaId,
                         principalTable: "CategoriaDePresupuestos",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -157,9 +157,9 @@ namespace PFinanzas.Migrations
                 column: "CategoriaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Presupuestos_CategoriaDePresupuestoId",
+                name: "IX_Presupuestos_CategoriaId",
                 table: "Presupuestos",
-                column: "CategoriaDePresupuestoId");
+                column: "CategoriaId");
         }
 
         /// <inheritdoc />

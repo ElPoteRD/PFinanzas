@@ -128,7 +128,7 @@ namespace PFinanzas.Migrations
                     b.Property<int>("CategoriaId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Descripción")
+                    b.Property<string>("Descripcion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -156,9 +156,6 @@ namespace PFinanzas.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CategoriaDePresupuestoId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoriaId")
                         .HasColumnType("int");
 
@@ -173,7 +170,7 @@ namespace PFinanzas.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoriaDePresupuestoId");
+                    b.HasIndex("CategoriaId");
 
                     b.ToTable("Presupuestos");
                 });
@@ -231,9 +228,13 @@ namespace PFinanzas.Migrations
 
             modelBuilder.Entity("PFinanzas.Data.Entities.Presupuesto", b =>
                 {
-                    b.HasOne("PFinanzas.Data.Entities.CategoriaDePresupuesto", null)
+                    b.HasOne("PFinanzas.Data.Entities.CategoriaDePresupuesto", "Categoria")
                         .WithMany("Presupuestos")
-                        .HasForeignKey("CategoriaDePresupuestoId");
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
                 });
 
             modelBuilder.Entity("PFinanzas.Data.Entities.CategoriaDeGasto", b =>

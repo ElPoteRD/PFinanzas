@@ -9,7 +9,7 @@ namespace PFinanzas.Data.Request
         public int UsuarioId { get; set; }
         public int CategoriaId { get; set; }
         public decimal Monto { get; set; }
-        public string Descripción { get; set; } = null!;
+        public string Descripcion { get; set; } = null!;
         public DateTime Fecha { get; set; }= DateTime.Now;
 
     }

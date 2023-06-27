@@ -9,7 +9,7 @@ namespace PFinanzas.Data.Entities
     {
         public CategoriaDeIngreso()
         {
-            Ingresos = new List<Ingreso>();
+            Ingresos = new HashSet<Ingreso>();
         }
         [Key]
         public int Id { get; set; }

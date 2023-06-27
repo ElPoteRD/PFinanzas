@@ -7,7 +7,7 @@ namespace PFinanzas.Data.Entities
     public class CategoriaDeGasto
     {
         public CategoriaDeGasto() { 
-            Gastos= new List<Gasto>();
+            Gastos= new HashSet<Gasto>();
 
         }
         [Key]

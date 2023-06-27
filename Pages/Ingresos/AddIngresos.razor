@@ -34,14 +34,22 @@
             <h3 class="text-lg-center mb-4">Agregar Ingreso</h3>
 
             <EditForm Model="request" OnValidSubmit="enviar">
+                <DataAnnotationsValidator/>
+                <ValidationSummary/>
+                @if (!string.IsNullOrEmpty(ErrorMessage))
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ErrorMessage
+                    </div>
+                }
                 <div class="input-group">
                     <div class="mb-3 input-group">
                         <label class="input-group-text">Monto</label>
-                        <input type="text" class="form-control" value="@request.Monto">
+                        <InputNumber TValue="decimal" class="form-control" @bind-Value="request.Monto"/>
                     </div>
                     <div class="mb-3 input-group">
                         <label class="input-group-text">Categoria</label>
-                        <select class="form-control" @bind="Ingresorequest.Categoria">
+                        <select class="form-control" @bind="request.CategoriaId">
                             <option disabled>Selecciona una Categoria</option>
                             @foreach (var categoria in Categorias)
                             {
@@ -53,7 +61,7 @@
                     </div>
                     <div class="mb-3 input-group">
                         <label class="input-group-text">Descripcion</label>
-                        <InputText class="form-control" @bind-Value="@request.Descripción"></InputText>
+                        <InputText class="form-control" @bind-Value="@request.Descripcion"></InputText>
                     </div>
 
                     <div class="mb-3 input-group">
@@ -76,13 +84,14 @@
     public CategoriaDeIngresoRequest Ingresorequest { get; set; } = new CategoriaDeIngresoRequest();
     public List<CategoriaDeIngresoResponse> Categorias { get; set; } = new List<CategoriaDeIngresoResponse>();
     public List<IngresoResponse> Ingresos { get; set; } = new List<IngresoResponse>();
-
+    public string ErrorMessage = "";
     public async Task enviar()
     {
         if (request.Id == 0)
         {
             var r = await IngresoService.Crear(request);
-            StateHasChanged();
+            if (r.Success) { ErrorMessage = "";  StateHasChanged(); }
+            else ErrorMessage = r.Message;
         }
     }
 
