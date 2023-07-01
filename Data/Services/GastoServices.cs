@@ -75,11 +75,11 @@ namespace PFinanzas.Data.Services
 
         }
 
-        public async Task<Result<List<GastoResponse>>> Consultar(string filtro)
+        public async Task<Result<List<GastoResponse>>> Consultar()
         {
             try
             {
-                var gasto = await dbContext.Gastos.Where(c => (c.Fecha + " " + c.Descripción + " " + c.Monto + " " + c.Categoria).ToLower().Contains(filtro.ToLower())).Select(c => c.ToResponse()).ToListAsync();
+                var gasto = await dbContext.Gastos.Select(c => c.ToResponse()).ToListAsync();
 
                 return new Result<List<GastoResponse>>
                 {

@@ -1,15 +1,21 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿<div class="top-row ps-3 navbar navbar-dark" style="background-color:rgb(35, 160, 90)">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/loginForm">Login</a>
+        <a class="navbar-brand">PFinanzas</a>
         <button title="Navigation menu" class="navbar-toggler">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
 </div>
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu" style="background-color:rgb(35, 160, 90)">
     <nav class="flex-column">
         
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/Dashboard">
+                <span class="oi oi-plus" aria-hidden="true"></span> Dashboard
+            </NavLink>
+        </div>
+
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="/Ingresos">
                 <span class="oi oi-plus" aria-hidden="true"></span> Ingresos
@@ -18,6 +24,11 @@
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="/Gastos">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Gastos
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/Usuarios">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Usuarios
             </NavLink>
         </div>
     </nav>

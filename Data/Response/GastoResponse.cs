@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PFinanzas.Data.Request;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PFinanzas.Data.Response
 {
@@ -9,8 +11,22 @@ namespace PFinanzas.Data.Response
         public int CategoriaId { get; set; }
         public CategoriaDeGastoResponse? Categoria { get; set; }
         public decimal Monto { get; set; }
-        public string Descripción { get; set; } = null!;
+        public string Descripcion { get; set; } = null!;
         public DateTime Fecha { get; set; }
 
+
+        public GastoRequest ToRequest()
+        {
+            return new GastoRequest
+            {
+                Id = Id,
+                UsuarioId = UsuarioId,
+                CategoriaId = CategoriaId,
+                Monto = Monto,
+                Descripcion = Descripcion,
+                Fecha = Fecha,
+            };
+        }
     }
+
 }

@@ -75,7 +75,7 @@ namespace PFinanzas.Data.Services
 
         }
 
-        public async Task<Result<List<IngresoResponse>>> Consultar(string filtro)
+        public async Task<Result<List<IngresoResponse>>> Consultar()
         {
             try
             {

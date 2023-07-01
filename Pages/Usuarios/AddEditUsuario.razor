@@ -11,9 +11,9 @@
                      <img src="icons/user.png" />
                      <label class="card-title">@usuario.Nombre @usuario.Apellido</label>
                 </div>
-                @*<div>
+                <div>
                     <button @onclick="()=>Eliminar(usuario)" class="btn btn-danger w-100">Eliminar</button>
-                 </div>*@
+                 </div>
              </div>
              }
     </div>
@@ -42,7 +42,7 @@
 
                         <div class="mb-3 input-group">
                             <label class="input-group-text">Contraseña</label>
-                            <input type="password" class="form-control" value="@request.Contraseña">
+                            <InputText class="form-control" @bind-Value="@request.Contraseña"></InputText>
                         </div>
         
                         <div class="btn-group w-100">
@@ -55,7 +55,7 @@
 </div>
 
 @code {
-    
+
     public UsuarioRequest request { get; set; } = new UsuarioRequest();
     public List<UsuarioResponse> Usuarios { get; set; } = new List<UsuarioResponse>();
 
@@ -70,6 +70,7 @@
         {
             var r = await UsuarioService.Crear(request);
             StateHasChanged();
+            request = new UsuarioRequest();
             await CargarUsuarios();
         }
     }

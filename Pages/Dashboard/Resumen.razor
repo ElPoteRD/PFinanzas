@@ -1,0 +1,78 @@
+﻿@page "/Dashboard"
+
+<div class="m-auto" style=" padding:2.5rem; width:60rem; font-family:monospace; background-color:white; border-radius:15px; box-shadow: 4px 4px 4px 3px rgba(0, 0, 0, 0.2); ">
+    
+    <h3 class="m-auto" style="color:blue">Tus Finanzas Personales</h3>
+    
+    <!--Total Ingresos-->
+    <div class="" style="width:45rem; margin:1rem auto; background-color: white; box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.2); border-radius:25px;">
+        
+        <div class="card-body">
+                <img src="icons/ingresos.png" />
+                <label class="card-title" style="font-size: 3rem; text-align:center; margin-left:6rem; color: green"> 
+                $@(Ingresos.Sum(x => x.Monto))
+                </label>
+        </div>
+
+     </div>
+    <!--Total Gastos-->
+    <div
+        style="width:45rem; 
+        margin:0.5rem auto; background-color: white; 
+        box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.2); 
+        border-radius:25px;"
+     >
+    
+         <div class="card-body">
+             <img src="icons/gastos.png" />
+             <label class="card-title" style="font-size: 3rem; text-align:center; margin-left:6rem; color: red"> 
+                 $@(Gastos.Sum(x => x.Monto))
+             </label>
+         </div>
+    </div>
+    
+    <!--Resumen-->
+    <div 
+         style="width:45rem;
+         margin:0.5rem auto; background-color: white; 
+         box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.2); 
+         border-radius:25px;">
+
+            <div class="card-body" style="border-radius:6px">
+                <img src="icons/signo-igual.png" />
+                <label class="card-title" style=" font-size: 3rem; text-align:center; margin-left:6rem; color:dodgerblue"> 
+                    $@(Ingresos.Sum(x => x.Monto) - Gastos.Sum(x => x.Monto))
+                </label>
+            </div>
+    </div>
+</div>
+@code {
+
+    public List<IngresoResponse> Ingresos { get; set; } = new List<IngresoResponse>();
+    public List<GastoResponse> Gastos { get; set; } = new List<GastoResponse>();
+
+    async Task CargarIngresos()
+    {
+        var r = await IngresoService.Consultar();
+        if (r.Success)
+        {
+            Ingresos = r.Data!;
+        }
+    }
+
+    async Task CargarGasto()
+    {
+        var r = await GastoService.Consultar();
+        if (r.Success)
+        {
+            Gastos = r.Data!;
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CargarIngresos();
+        await CargarGasto();
+    }
+    
+}

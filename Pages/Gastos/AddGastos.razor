@@ -1,8 +1,8 @@
-﻿@page "/Ingresos"
-<h3>Ingresos</h3>
+﻿@page "/Gastos"
+<h3>Gastos</h3>
 
 <div class="container-sm d-flex justify-content-evenly align-items-lg-start">
-    <!--Tabla de Ingresos-->
+    <!--Tabla de Gastos-->
     <div class="m-4 d-flex row responsive" style="width:25rem">
         <table class="table">
             <thead>
@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var i in Ingresos)
+                @foreach (var i in Gastos)
                 {
                     <tr >
                         <td>@i.Fecha</td>
@@ -31,14 +31,14 @@
             
             
         </table>
-        <label style="font-size: 35px"> Total $@(request.Total + @Ingresos.Sum(i => i.Monto))</label>
+        <label style="font-size: 35px"> Total: $@(request.Total +@Gastos.Sum(i => i.Monto))</label>
     </div>
 
     <!--Formulario Crear Ingreso-->
     <div class="m-4 d-flex">
 
         <div class="container-sm p-4" style="width:25rem; border-color:lightgray; border-style:solid; border-radius:5%">
-            <h3 class="text-lg-center mb-4">Agregar Ingreso</h3>
+            <h3 class="text-lg-center mb-4">Agregar Gasto</h3>
 
             <EditForm Model="request" OnValidSubmit="enviar">
                 <DataAnnotationsValidator/>
@@ -88,69 +88,65 @@
 
 @code {
 
-    public IngresoRequest request { get; set; } = new IngresoRequest();
-    public CategoriaDeIngresoRequest Ingresorequest { get; set; } = new CategoriaDeIngresoRequest();
-    public List<CategoriaDeIngresoResponse> Categorias { get; set; } = new List<CategoriaDeIngresoResponse>();
-    public List<IngresoResponse> Ingresos { get; set; } = new List<IngresoResponse>();
+    public GastoRequest request { get; set; } = new GastoRequest();
+    public CategoriaDeGastoRequest Gastorequest { get; set; } = new CategoriaDeGastoRequest();
+    public List<CategoriaDeGastoResponse> Categorias { get; set; } = new List<CategoriaDeGastoResponse>();
+    public List<GastoResponse> Gastos { get; set; } = new List<GastoResponse>();
     public string ErrorMessage = "";
 
 
 
     public async Task enviar()
     {
-        await CargarCategorias();
         if (request.Id == 0)
         {
-            
-            var r = await IngresoService.Crear(request);
+
+            var r = await GastoService.Crear(request);
             if (r.Success) 
             { 
-                ErrorMessage = "";  
-                StateHasChanged(); 
-                await CargarIngresos(); 
-                Navegar.NavigateTo("/Ingresos", true);
+                ErrorMessage = ""; 
+                StateHasChanged();;
+               await CargarGastos();
+                Navegar.NavigateTo("/Gastos", true);
             }
             else ErrorMessage = r.Message;
-            
             
         }
     }
 
-    public async Task Eliminar(IngresoResponse ingreso)
+    public async Task Eliminar(GastoResponse gasto)
     {
-        await CargarIngresos();
-        var r = await IngresoService.Eliminar(ingreso.ToRequest());
+        var r = await GastoService.Eliminar(gasto.ToRequest());
         if (r.Success)
         {
-            await CargarIngresos();
             StateHasChanged();
+            await CargarGastos();
         }
     }
 
     async Task CargarCategorias()
     {
-        var r = await CategoriaDeIngresoServices.Consultar();
+        var r = await CategoriaDeGastoServices.Consultar();
         if (r.Success)
         {
             Categorias = r.Data!;
         }
     }
 
-    async Task CargarIngresos()
+    async Task CargarGastos()
     {
-        await CargarCategorias();
-        var r = await IngresoService.Consultar();
+
+        var r = await GastoService.Consultar();
         if (r.Success)
         {
-            Ingresos = r.Data!;
+            Gastos = r.Data!;
         }
+
     }
 
     protected override async Task OnInitializedAsync()
     {
-        await CargarIngresos();
+        await CargarGastos();
         await CargarCategorias();
-
-        
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PFinanzas.Data.Request
 {
@@ -12,5 +13,7 @@ namespace PFinanzas.Data.Request
         public string Descripcion { get; set; } = null!;
         public DateTime Fecha { get; set; }= DateTime.Now;
 
+        [NotMapped]
+        public decimal Total { get; set; }
     }
 }

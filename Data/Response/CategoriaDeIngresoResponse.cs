@@ -6,8 +6,7 @@ namespace PFinanzas.Data.Response
     public class CategoriaDeIngresoResponse
     {
         public int Id { get; set; }
-        public string Categoria { get; set; } = null!;
-
+        public string? Categoria { get; set; }
 
     }
 }

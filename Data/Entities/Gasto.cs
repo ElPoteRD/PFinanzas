@@ -14,7 +14,7 @@ namespace PFinanzas.Data.Entities
         [ForeignKey(nameof(CategoriaId))]
         public virtual CategoriaDeGasto? Categoria { get; set; }
         public decimal Monto { get; set; }
-        public string Descripción { get; set; } = null!;
+        public string Descripcion { get; set; } = null!;
         public DateTime Fecha { get; set; }
 
         public static Gasto Crear(GastoRequest Gasto) => new Gasto()
@@ -23,7 +23,7 @@ namespace PFinanzas.Data.Entities
             UsuarioId = Gasto.UsuarioId,
             CategoriaId = Gasto.CategoriaId,
             Monto = Gasto.Monto,
-            Descripción = Gasto.Descripción,
+            Descripcion = Gasto.Descripcion,
             Fecha = Gasto.Fecha,
 
         };
@@ -37,9 +37,9 @@ namespace PFinanzas.Data.Entities
                 cambio = true;
             }
 
-            if (Descripción != Gasto.Descripción)
+            if (Descripcion != Gasto.Descripcion)
             {
-                Descripción = Gasto.Descripción;
+                Descripcion = Gasto.Descripcion;
                 cambio = true;
             }
 
@@ -59,7 +59,7 @@ namespace PFinanzas.Data.Entities
             UsuarioId= UsuarioId,
             CategoriaId = CategoriaId,
             Monto = Monto,
-            Descripción=Descripción,
+            Descripcion=Descripcion,
             Fecha = Fecha
         };
     }

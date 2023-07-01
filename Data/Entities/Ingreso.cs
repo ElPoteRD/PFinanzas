@@ -60,7 +60,7 @@ namespace PFinanzas.Data.Entities
             CategoriaId=CategoriaId,
             Categoria= Categoria?.ToResponse(),
             Monto = Monto,
-            Descripción = Descripcion.ToString(),
+            Descripcion = Descripcion.ToString(),
             Fecha = Fecha,
         };
 

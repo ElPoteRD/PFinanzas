@@ -13,13 +13,13 @@
 
                     <div class="mb-3 input-group">
                         <label class="input-group-text">Contraseña</label>
-                        <input type="password" class="form-control" value="@request.Contraseña">
+                        <InputText class="form-control" @bind-Value="@request.Contraseña"></InputText>
                     </div>
                     
                         <a class="mb-3" style="text-decoration:none" href="/Usuarios">¿No tienes Usuario?</a>
                     
                     <div class="btn-group w-100">
-                        <button type="submit" class="btn btn-success">Iniciar</button>
+                    <button type="submit" class="btn btn-success" @onclick='()=>{Navegar.NavigateTo(" /Dashboard", true);}'>Iniciar</button>
                     </div>
                 </div>
             </EditForm>
@@ -35,5 +35,7 @@
 
             StateHasChanged();
         }
+
     }
+
 }
