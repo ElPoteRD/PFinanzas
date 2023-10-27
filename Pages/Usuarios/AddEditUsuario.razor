@@ -1,9 +1,9 @@
-﻿@page "/Usuarios"
+﻿@page "/Reportes"
 <div class="container-sm d-flex justify-content-evenly align-items-lg-start">
     
     <!--Lista de Usuarios-->
     <div class="m-4">
-        <h3 style="text-align:center">Usuarios</h3>
+        @* <h3 style="text-align:center">Usuarios</h3> *@
             @foreach (var usuario in Usuarios)
             {
             <div class="card mb-2" style="width:24rem">
@@ -22,7 +22,7 @@
     <div class="m-4 d-flex">
 
          <div class="container-sm p-4" style="width:25rem; border-color:lightgray; border-style:solid; border-radius:5%">
-                <h3 class="text-lg-center mb-4">Crear Usuario</h3>
+                 <h3 class="text-lg-center mb-4">Crear Usuario</h3> 
                 <EditForm Model="request" OnValidSubmit="enviar">
                    <div class="input-group">
                         <div class="mb-3 input-group">
